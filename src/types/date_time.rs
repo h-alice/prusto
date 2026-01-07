@@ -72,7 +72,7 @@ gen_date_time!(
     NaiveDateTime,
     NaiveDateTimeSeed,
     PrestoTy::Timestamp,
-    "%Y-%m-%d %H:%M:%S%.3f",
+    "%Y-%m-%d %H:%M:%S%.6f",
     NaiveDate::from_ymd_opt(1970, 1, 1)
         .unwrap()
         .and_hms_opt(0, 0, 0)
@@ -83,7 +83,7 @@ gen_date_time!(
     NaiveTime,
     NaiveTimeSeed,
     PrestoTy::Time,
-    "%H:%M:%S%.3f",
+    "%H:%M:%S%.6f",
     NaiveTime::from_hms_opt(0, 0, 0).unwrap(),
     "naive date time"
 );
@@ -91,7 +91,7 @@ gen_date_time!(
     DateTime<FixedOffset>,
     DateTimeWithZoneSeed,
     PrestoTy::TimestampWithTimeZone,
-    "%Y-%m-%d %H:%M:%S%.3f %:z",
+    "%Y-%m-%d %H:%M:%S%.6f %:z",
     DateTime::parse_from_str(
         "1970-01-01 00:00:00.000 +00:00",
         "%Y-%m-%d %H:%M:%S%.3f %:z"
