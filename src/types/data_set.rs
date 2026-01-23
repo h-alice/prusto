@@ -147,7 +147,8 @@ impl<'de, T: Presto> Deserialize<'de> for DataSet<T> {
                 let seed = VecSeed::new(&ctx);
 
                 let data = if let Some(Field::Data) = map.next_key()? {
-                    map.next_value_seed(seed)?
+                    let r = map.next_value_seed(seed);
+                    r.inspect_err(|e| println!("Error suppressed during parsing: {:?}", e))?
                 } else {
                     // it is empty when there is no data
                     vec![]
